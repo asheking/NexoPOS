@@ -5,6 +5,10 @@ export interface ProductFeatureOption {
   name: string;
 }
 
+export type StockTrackingMethod =
+  | "count-remaining"
+  | "count-sold";
+
 export interface ProductFeature {
   id: number;
   name: string;
@@ -38,6 +42,7 @@ export interface Product {
   description?: string;
   status: "active" | "inactive";
   types: ProductType[];
+  stockTrackingMethod: StockTrackingMethod;
 }
 
 export const initialProducts: Product[] = [
@@ -64,6 +69,7 @@ export const initialProducts: Product[] = [
         variants: [],
       },
     ],
+    stockTrackingMethod: "count-remaining",
   },
 
   {
@@ -89,6 +95,7 @@ export const initialProducts: Product[] = [
         variants: [],
       },
     ],
+    stockTrackingMethod: "count-remaining",
   },
 
   {
@@ -122,6 +129,7 @@ export const initialProducts: Product[] = [
         variants: [],
       },
     ],
+    stockTrackingMethod: "count-sold",
   },
 
   {
@@ -129,7 +137,17 @@ export const initialProducts: Product[] = [
     name: "Butter",
     category: "Dairy",
     status: "active",
-    types: [],
+    types: [
+      {
+        id: 401,
+        name: "Standard",
+        entryMethod: "received",
+        status: "active",
+        features: [],
+        variants: [],
+      },
+    ],
+    stockTrackingMethod: "count-sold",
   },
 
   {
@@ -137,7 +155,17 @@ export const initialProducts: Product[] = [
     name: "Egg",
     category: "Poultry",
     status: "active",
-    types: [],
+    types: [
+      {
+        id: 402,
+        name: "Standard",
+        entryMethod: "received",
+        status: "active",
+        features: [],
+        variants: [],
+      },
+    ],
+    stockTrackingMethod: "count-remaining",
   },
 
   {
@@ -145,6 +173,16 @@ export const initialProducts: Product[] = [
     name: "Chicken",
     category: "Poultry",
     status: "active",
-    types: [],
+    types: [
+      {
+        id: 401,
+        name: "Standard",
+        entryMethod: "received",
+        status: "active",
+        features: [],
+        variants: [],
+      },
+    ],
+    stockTrackingMethod: "count-sold",
   },
-];
+]

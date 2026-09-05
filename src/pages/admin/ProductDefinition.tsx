@@ -95,12 +95,7 @@ function ProductDefinition() {
   };
 
   return (
-    <div
-      style={{
-        maxWidth: "900px",
-        margin: "0 auto",
-      }}
-    >
+    <div style={{ padding: 24 }}>
       {/* PAGE HEADER */}
       <div
         style={{
@@ -379,6 +374,7 @@ function ProductDefinition() {
               description: values.description,
               status: "active",
               types: [],
+              stockTrackingMethod: values.stockTrackingMethod,
             };
 
             addProduct(newProduct);
@@ -429,6 +425,33 @@ function ProductDefinition() {
                   label: category.name,
                   value: category.name,
                 }))}
+            />
+          </Form.Item>
+
+          {/* STOCK TRACKING METHOD */}
+          <Form.Item
+            label="Stock Tracking Method"
+            name="stockTrackingMethod"
+            rules={[
+              {
+                required: true,
+                message: "Please select a stock tracking method",
+              },
+            ]}
+          >
+            <Select
+              size="large"
+              placeholder="How will stock be tracked?"
+              options={[
+                {
+                  label: "Count Remaining",
+                  value: "count-remaining",
+                },
+                {
+                  label: "Count Sold",
+                  value: "count-sold",
+                },
+              ]}
             />
           </Form.Item>
 

@@ -71,6 +71,7 @@ function ProductInformation() {
       editForm.setFieldsValue({
         name: product.name,
         category: product.category,
+        stockTrackingMethod: product.stockTrackingMethod,
         description: product.description,
       });
     }
@@ -98,6 +99,7 @@ function ProductInformation() {
     editForm.setFieldsValue({
       name: product.name,
       category: product.category,
+      stockTrackingMethod: product.stockTrackingMethod,
       description: product.description,
     });
 
@@ -108,12 +110,14 @@ function ProductInformation() {
   const handleSaveProduct = (values: {
     name: string;
     category: string;
+    stockTrackingMethod: "count-remaining" | "count-sold";
     description?: string;
   }) => {
     updateProduct({
       ...product,
       name: values.name,
       category: values.category,
+      stockTrackingMethod: values.stockTrackingMethod,
       description: values.description,
     });
 
@@ -549,6 +553,32 @@ function ProductInformation() {
                   value: category.name,
                 }))}
             />
+          </Form.Item>
+
+          <Form.Item
+            label="Stock Tracking Method"
+            name="stockTrackingMethod"
+            rules={[
+              {
+                required: true,
+                message: "Please select a stock tracking method",
+              },
+            ]}
+          >
+            <Select
+              placeholder="Select stock tracking method"
+              options={[
+                {
+                  label: "Count Remaining",
+                  value: "count-remaining",
+                },
+                {
+                  label: "Count Sold",
+                  value: "count-sold",
+                },
+              ]}
+            />
+
           </Form.Item>
 
           <Form.Item

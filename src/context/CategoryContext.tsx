@@ -8,10 +8,6 @@ interface CategoryContextType {
   categories: Category[];
   addCategory: (category: Category) => void;
   updateCategory: (category: Category) => void;
-  toggleCategoryStatus: (
-    categoryId: number,
-    active: boolean
-  ) => void;
 }
 
 const CategoryContext = createContext<CategoryContextType | undefined>(
@@ -43,29 +39,12 @@ export function CategoryProvider({
     );
   };
 
-  const toggleCategoryStatus = (
-    categoryId: number,
-    active: boolean
-  ) => {
-    setCategories((currentCategories) =>
-      currentCategories.map((category) =>
-        category.id === categoryId
-          ? {
-              ...category,
-              status: active ? "active" : "inactive",
-            }
-          : category
-      )
-    );
-  };
-
   return (
     <CategoryContext.Provider
       value={{
         categories,
         addCategory,
         updateCategory,
-        toggleCategoryStatus,
       }}
     >
       {children}

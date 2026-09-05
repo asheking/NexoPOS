@@ -6,8 +6,8 @@ import Signup from "./pages/Signup";
 
 import Dashboard from "./pages/admin/Dashboard";
 import ProductDefinition from "./pages/admin/ProductDefinition";
-import ReceiveStock from "./pages/admin/ReceiveStock";
-import Production from "./pages/admin/Production";
+import ReceiveStock from "./pages/admin/RestockPage/ReceiveStock";
+import Production from "./pages/admin/Production/Production";
 import Inventory from "./pages/admin/Inventory";
 import Sales from "./pages/admin/Sales";
 import MilkContracts from "./pages/admin/MilkContracts";
@@ -19,6 +19,14 @@ import ProductInformation from "./pages/admin/ProductInformation";
 import CategoryManagement from "./pages/admin/CategoryManagement";
 import { CategoryProvider } from "./context/CategoryContext";
 import { ProductProvider } from "./context/ProductContext";
+import { SupplierProvider } from "./context/SupplierContext";
+import { SupplierContractProvider } from "./context/SupplierContractContext";
+import { MilkReceiptProvider } from "./context/MilkReceiptContext";
+import { StockReceiptProvider } from "./context/StockReceiptContext";
+import { ProductionProvider } from "./context/ProductionContext";
+import { InventoryProvider } from "./context/InventoryContext";
+import { SalesProvider } from "./context/SalesContext";
+import MilkSupplierHistory from "./pages/admin/RestockPage/MilkSupplierHistory";
 
 import AppLayout from "./layouts/AppLayout";
 
@@ -27,134 +35,157 @@ function App() {
     <BrowserRouter>
      <CategoryProvider>
       <ProductProvider>
-        <Routes>
+        <SupplierProvider>
+          <SupplierContractProvider>
+            <MilkReceiptProvider>
+              <StockReceiptProvider>
+                <ProductionProvider>
+                  <SalesProvider>
+                    <InventoryProvider>
+                      <Routes>
 
-          {/* Public */}
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
+                        {/* Public */}
+                        <Route path="/" element={<Home />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/signup" element={<Signup />} />
 
-          {/* Superadmin */}
-          <Route
-            path="/dashboard"
-            element={
-              <AppLayout>
-                <Dashboard />
-              </AppLayout>
-            }
-          />
+                        {/* Superadmin */}
+                        <Route
+                          path="/dashboard"
+                          element={
+                            <AppLayout>
+                              <Dashboard />
+                            </AppLayout>
+                          }
+                        />
 
-          <Route
-            path="/products"
-            element={
-              <AppLayout>
-                <ProductDefinition />
-              </AppLayout>
-            }
-          />
+                        <Route
+                          path="/products"
+                          element={
+                            <AppLayout>
+                              <ProductDefinition />
+                            </AppLayout>
+                          }
+                        />
 
-          <Route
-            path="/categories"
-            element={
-              <AppLayout>
-                <CategoryManagement />
-              </AppLayout>
-            }
-          />
+                        <Route
+                          path="/categories"
+                          element={
+                            <AppLayout>
+                              <CategoryManagement />
+                            </AppLayout>
+                          }
+                        />
 
-          <Route
-            path="/products/:productId/info"
-            element={
-              <AppLayout>
-                <ProductInformation />
-              </AppLayout>
-            }
-          />
+                        <Route
+                          path="/products/:productId/info"
+                          element={
+                            <AppLayout>
+                              <ProductInformation />
+                            </AppLayout>
+                          }
+                        />
 
-          <Route
-            path="/products/:productId/types/:typeId/configuration"
-            element={
-              <AppLayout>
-                <TypeConfiguration />
-              </AppLayout>
-            }
-          />
+                        <Route
+                          path="/products/:productId/types/:typeId/configuration"
+                          element={
+                            <AppLayout>
+                              <TypeConfiguration />
+                            </AppLayout>
+                          }
+                        />
 
-          <Route
-            path="/receive-stock"
-            element={
-              <AppLayout>
-                <ReceiveStock />
-              </AppLayout>
-            }
-          />
+                        <Route
+                          path="/receive-stock"
+                          element={
+                            <AppLayout>
+                              <ReceiveStock />
+                            </AppLayout>
+                          }
+                        />
 
-          <Route
-            path="/production"
-            element={
-              <AppLayout>
-                <Production />
-              </AppLayout>
-            }
-          />
+                        <Route
+                          path="/milk-supplier-history"
+                          element={
+                            <AppLayout>
+                              <MilkSupplierHistory />
+                            </AppLayout>
+                          }
+                        />
 
-          <Route
-            path="/inventory"
-            element={
-              <AppLayout>
-                <Inventory />
-              </AppLayout>
-            }
-          />
+                        <Route
+                          path="/production"
+                          element={
+                            <AppLayout>
+                              <Production />
+                            </AppLayout>
+                          }
+                        />
 
-          <Route
-            path="/sales"
-            element={
-              <AppLayout>
-                <Sales />
-              </AppLayout>
-            }
-          />
+                        <Route
+                          path="/inventory"
+                          element={
+                            <AppLayout>
+                              <Inventory />
+                            </AppLayout>
+                          }
+                        />
 
-          <Route
-            path="/milk-contracts"
-            element={
-              <AppLayout>
-                <MilkContracts />
-              </AppLayout>
-            }
-          />
+                        <Route
+                          path="/sales"
+                          element={
+                            <AppLayout>
+                              <Sales />
+                            </AppLayout>
+                          }
+                        />
 
-          <Route
-            path="/finance"
-            element={
-              <AppLayout>
-                <Finance />
-              </AppLayout>
-            }
-          />
+                        <Route
+                          path="/milk-contracts"
+                          element={
+                            <AppLayout>
+                              <MilkContracts />
+                            </AppLayout>
+                          }
+                        />
 
-          <Route
-            path="/workers"
-            element={
-              <AppLayout>
-                <Workers />
-              </AppLayout>
-            }
-          />
+                        <Route
+                          path="/finance"
+                          element={
+                            <AppLayout>
+                              <Finance />
+                            </AppLayout>
+                          }
+                        />
 
-          <Route
-            path="/settings"
-            element={
-              <AppLayout>
-                <Settings />
-              </AppLayout>
-            }
-          />
+                        <Route
+                          path="/workers"
+                          element={
+                            <AppLayout>
+                              <Workers />
+                            </AppLayout>
+                          }
+                        />
 
-        </Routes>
+                        <Route
+                          path="/settings"
+                          element={
+                            <AppLayout>
+                              <Settings />
+                            </AppLayout>
+                          }
+                        />
+
+                      </Routes>
+                    </InventoryProvider>
+                  </SalesProvider>
+                </ProductionProvider>
+              </StockReceiptProvider>
+            </MilkReceiptProvider>
+          </SupplierContractProvider>
+        </SupplierProvider>
       </ProductProvider>
-      </CategoryProvider>
+     </CategoryProvider>
     </BrowserRouter>
   );
 }
